@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- For optimal display on high DPI devices -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>360° Image Gallery</title>
+
+    <!-- Include Photo Sphere Viewer CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        /* Set up the grid container */
+        #viewer-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            grid-auto-rows: 1fr;                  /* Auto rows with equal height */
+            gap: 100px;                            /* Margin between grid items */
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            padding: 100px;                        /* Padding around the grid */
+        }
+        /* Make each viewer a square */
+        .viewer-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect Ratio (Square) */
+        }
+        /* Position the viewer absolutely within its container */
+        .viewer-wrapper > .viewer-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for the viewers -->
+    <div id="viewer-container"></div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+                "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import { Viewer } from '@photo-sphere-viewer/core';
+
+        // List of image filenames in the subfolder 'images'
+        const imageFilenames = [
+            '0.jpg',
+            '1.jpg',
+            '1.jpg',
+            '0.jpg',
+            // Ensure you have at least four images
+        ];
+
+        // The path to the subfolder containing the images
+        const imageFolder = 'images/';
+
+        // Reference to the container div
+        const container = document.getElementById('viewer-container');
+
+        // Loop through each image filename and create a viewer
+        imageFilenames.forEach((filename, index) => {
+            // Create a wrapper div to maintain aspect ratio
+            const viewerWrapper = document.createElement('div');
+            viewerWrapper.className = 'viewer-wrapper';
+            container.appendChild(viewerWrapper);
+
+            // Create a div to hold the viewer
+            const viewerDiv = document.createElement('div');
+            viewerDiv.className = 'viewer-container';
+            viewerWrapper.appendChild(viewerDiv);
+
+            // Initialize the viewer and add it to the div
+            const viewer = new Viewer({
+                container: viewerDiv,
+                panorama: imageFolder + filename,
+                caption: filename,
+                navbar: [
+                    'autorotate',
+                    'zoom',
+                    'fullscreen'
+                ],
+            });
+        });
+    </script>
+
+</body>
+</html>
