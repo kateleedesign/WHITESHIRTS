@@ -48,6 +48,11 @@
             padding: 5px; /* Padding around the text */
             border-radius: 5px; /* Rounded corners */
             font-size: 20px;
+            display: none; /* Hide the text initially */
+        }
+
+        .viewer-wrapper:hover .viewer-text {
+            display: block; /* Show the text when hovering over the viewer wrapper */
         }
     </style>
 </head>
@@ -76,7 +81,6 @@
         '4.jpg',
         '2.jpg',
         '3.jpg',
-        // Ensure you have at least four images
     ];
 
     // Custom titles for each image
@@ -125,8 +129,7 @@
             ],
         });
     });
-</script>
-
+    </script>
 
 </body>
 </html>
