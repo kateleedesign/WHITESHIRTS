@@ -67,7 +67,14 @@
             '3.jpg',
             // Ensure you have at least four images
         ];
-
+        // Custom titles for each image
+        const imageTitles = [
+            'Panorama 1',
+            'Panorama 2',
+            'Panorama 3',
+            'Panorama 4',
+            'Panorama 5',
+        ];
         // The path to the subfolder containing the images
         const imageFolder = 'Images/';
 
@@ -79,6 +86,14 @@
             // Create a wrapper div to maintain aspect ratio
             const viewerWrapper = document.createElement('div');
             viewerWrapper.className = 'viewer-wrapper';
+            
+            // Create a title element for each viewer
+            const titleElement = document.createElement('p');
+            titleElement.className = 'viewer-title';
+            titleElement.innerText = imageTitles[index]; // Use the custom title
+            
+            // Append the title before the viewer
+            container.appendChild(titleElement);
             container.appendChild(viewerWrapper);
 
             // Create a div to hold the viewer
