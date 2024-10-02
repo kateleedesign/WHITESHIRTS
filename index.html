@@ -39,6 +39,16 @@
             width: 100%;
             height: 100%;
         }
+        /* Style for the text inside the viewer */
+        .viewer-text {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            left: 10px; /* Adjust as needed */
+            color: white; /* Text color */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 5px; /* Padding around the text */
+            border-radius: 5px; /* Rounded corners */
+        }
     </style>
 </head>
 <body>
@@ -56,50 +66,66 @@
     </script>
 
     <script type="module">
-        import { Viewer } from '@photo-sphere-viewer/core';
+    import { Viewer } from '@photo-sphere-viewer/core';
 
-        // List of image filenames in the subfolder 'images'
-        const imageFilenames = [
-            '0.jpg',
-            '1.jpg',
-            '5.jpg',
-            '4.jpg',
-            '2.jpg',
-            '3.jpg',
-            // Ensure you have at least four images
-        ];
+    // List of image filenames in the subfolder 'images'
+    const imageFilenames = [
+        '0.jpg',
+        '1.jpg',
+        '5.jpg',
+        '4.jpg',
+        '2.jpg',
+        '3.jpg',
+        // Ensure you have at least four images
+    ];
 
-        // The path to the subfolder containing the images
-        const imageFolder = 'Images/';
+    // Custom titles for each image
+    const imageTitles = [
+        'Panorama 1',
+        'Panorama 2',
+        'Panorama 3',
+        'Panorama 4',
+        'Panorama 5',
+    ];
 
-        // Reference to the container div
-        const container = document.getElementById('viewer-container');
+    // The path to the subfolder containing the images
+    const imageFolder = 'Images/';
 
-        // Loop through each image filename and create a viewer
-        imageFilenames.forEach((filename, index) => {
-            // Create a wrapper div to maintain aspect ratio
-            const viewerWrapper = document.createElement('div');
-            viewerWrapper.className = 'viewer-wrapper';
-            container.appendChild(viewerWrapper);
+    // Reference to the container div
+    const container = document.getElementById('viewer-container');
 
-            // Create a div to hold the viewer
-            const viewerDiv = document.createElement('div');
-            viewerDiv.className = 'viewer-container';
-            viewerWrapper.appendChild(viewerDiv);
+    // Loop through each image filename and create a viewer
+    imageFilenames.forEach((filename, index) => {
+        // Create a wrapper div to maintain aspect ratio
+        const viewerWrapper = document.createElement('div');
+        viewerWrapper.className = 'viewer-wrapper';
+        container.appendChild(viewerWrapper);
 
-            // Initialize the viewer and add it to the div
-            const viewer = new Viewer({
-                container: viewerDiv,
-                panorama: imageFolder + filename,
-                caption: filename,
-                navbar: [
-                    'autorotate',
-                    'zoom',
-                    'fullscreen'
-                ],
-            });
+        // Create a div to hold the viewer
+        const viewerDiv = document.createElement('div');
+        viewerDiv.className = 'viewer-container';
+        viewerWrapper.appendChild(viewerDiv);
+
+        // Create a text element for each viewer
+        const textElement = document.createElement('div');
+        textElement.className = 'viewer-text'; // Assign the class to style it
+        textElement.innerText = imageTitles[index]; // Use the custom title
+        viewerWrapper.appendChild(textElement); // Add the text to the viewer wrapper
+
+        // Initialize the viewer and add it to the div
+        const viewer = new Viewer({
+            container: viewerDiv,
+            panorama: imageFolder + filename,
+            caption: filename,
+            navbar: [
+                'autorotate',
+                'zoom',
+                'fullscreen'
+            ],
         });
-    </script>
+    });
+</script>
+
 
 </body>
 </html>
