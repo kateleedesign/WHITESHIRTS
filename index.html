@@ -14,14 +14,6 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
-        /* Parent container for the title and viewer */
-        .gallery-container {
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            justify-content: space-between; /* Evenly distribute space */
-            align-items: center; /* Center items horizontally */
-            height: 100vh; /* Full height of the viewport */
-        }
         /* Title styling */
         .gallery-title {
             text-align: center;   /* Center the title text */
@@ -36,8 +28,9 @@
             grid-auto-rows: 1fr;                  /* Auto rows with equal height */
             gap: 13vh;                            /* Increase margin between grid items */
             width: 100vw;
+            height: 100vh;
             box-sizing: border-box;
-            padding: 0;                           /* Remove padding around the grid */
+            padding: 13vh;                        /* Increase padding around the grid */
         }
         /* Make each viewer a square */
         .viewer-wrapper {
@@ -72,14 +65,11 @@
 </head>
 <body>
 
-    <!-- Parent container for the title and viewer -->
-    <div class="gallery-container">
-        <!-- Title at the top of the page -->
-        <h1 class="gallery-title">THE WHITE TSHIRT ARCHITECTURE</h1>
+    <!-- Title at the top of the page -->
+    <h1 class="gallery-title">THE WHITE TSHIRT ARCHITECTURE</h1>
 
-        <!-- Container for the viewers -->
-        <div id="viewer-container"></div>
-    </div>
+    <!-- Container for the viewers -->
+    <div id="viewer-container"></div>
 
     <script type="importmap">
         {
@@ -140,4 +130,20 @@
         // Initialize the viewer and add it to the div
         const viewer = new Viewer({
             container: viewerDiv,
-            panorama: imageFolder + 
+            panorama: imageFolder + filename,
+            caption: filename,
+            navbar: [
+                'autorotate',
+                'zoom',
+                'fullscreen'
+            ],
+        });
+    });
+    </script>
+
+</body>
+</html>
+
+
+</body>
+</html>
