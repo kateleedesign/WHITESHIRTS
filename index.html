@@ -19,24 +19,29 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* Two columns */
             grid-auto-rows: auto;                  /* Auto rows */
-            gap: 5vh;                            /* Margin between grid items */
+            gap: 5vh;                              /* Margin between grid items */
             width: 100vw;
             height: 100vh;
             box-sizing: border-box;
-            padding: 5vh;                        /* Padding around the grid */
+            padding: 5vh;                          /* Padding around the grid */
         }
         /* Style the grid items */
         .grid-item {
+            position: relative; /* Position relative for absolute positioning of title */
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center; /* Center viewer horizontally */
         }
         /* Custom style for titles */
         .viewer-title {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 18px;
-            font-weight: bold;
+            position: absolute; /* Position title absolutely */
+            top: 10px;         /* Distance from top */
+            left: 10px;        /* Distance from left */
+            color: white;      /* White text */
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+            padding: 5px;      /* Padding around text */
+            border-radius: 4px; /* Rounded corners for the background */
+            font-size: 18px;   /* Font size */
+            font-weight: bold; /* Font weight */
         }
         /* Make each viewer a square */
         .viewer-wrapper {
@@ -139,3 +144,4 @@
 
 </body>
 </html>
+
