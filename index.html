@@ -31,6 +31,16 @@
             width: 100%;
             padding-top: 100%; /* 1:1 Aspect Ratio (Square) */
         }
+        /* Style for the label */
+        .viewer-label {
+            position: absolute;
+            top: -30px; /* Adjust this value to move the label as desired */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
         /* Position the viewer absolutely within its container */
         .viewer-wrapper > .viewer-container {
             position: absolute;
@@ -80,6 +90,12 @@
             const viewerWrapper = document.createElement('div');
             viewerWrapper.className = 'viewer-wrapper';
             container.appendChild(viewerWrapper);
+
+            // Create a label for each viewer
+            const label = document.createElement('div');
+            label.className = 'viewer-label';
+            label.textContent = `Image ${index + 1}`; // You can customize the label text
+            viewerWrapper.appendChild(label);
 
             // Create a div to hold the viewer
             const viewerDiv = document.createElement('div');
