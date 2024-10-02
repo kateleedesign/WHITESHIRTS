@@ -18,30 +18,12 @@
         #viewer-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* Two columns */
-            grid-auto-rows: auto;                  /* Auto rows */
-            gap: 5vh;                              /* Margin between grid items */
+            grid-auto-rows: 1fr;                  /* Auto rows with equal height */
+            gap: 5vh;                            /* Margin between grid items */
             width: 100vw;
             height: 100vh;
             box-sizing: border-box;
-            padding: 5vh;                          /* Padding around the grid */
-        }
-        /* Style the grid items */
-        .grid-item {
-            position: relative; /* Position relative for absolute positioning of title */
-            display: flex;
-            justify-content: center; /* Center viewer horizontally */
-        }
-        /* Custom style for titles */
-        .viewer-title {
-            position: absolute; /* Position title absolutely */
-            top: 10px;         /* Distance from top */
-            left: 10px;        /* Distance from left */
-            color: white;      /* White text */
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
-            padding: 5px;      /* Padding around text */
-            border-radius: 4px; /* Rounded corners for the background */
-            font-size: 18px;   /* Font size */
-            font-weight: bold; /* Font weight */
+            padding: 5vh;                        /* Padding around the grid */
         }
         /* Make each viewer a square */
         .viewer-wrapper {
@@ -84,15 +66,7 @@
             '4.jpg',
             '2.jpg',
             '3.jpg',
-        ];
-        // Custom titles for each image
-        const imageTitles = [
-            'Panorama 1',
-            'Panorama 2',
-            'Panorama 3',
-            'Panorama 4',
-            'Panorama 5',
-            'Panorama 6',
+            // Ensure you have at least four images
         ];
 
         // The path to the subfolder containing the images
@@ -103,25 +77,10 @@
 
         // Loop through each image filename and create a viewer
         imageFilenames.forEach((filename, index) => {
-            // Create a grid item to hold both the title and viewer
-            const gridItem = document.createElement('div');
-            gridItem.className = 'grid-item';
-
-            // Create a title element for each viewer
-            const titleElement = document.createElement('p');
-            titleElement.className = 'viewer-title';
-            titleElement.innerText = imageTitles[index]; // Use the custom title
-
             // Create a wrapper div to maintain aspect ratio
             const viewerWrapper = document.createElement('div');
             viewerWrapper.className = 'viewer-wrapper';
-
-            // Append the title and viewer to the grid item
-            gridItem.appendChild(titleElement);
-            gridItem.appendChild(viewerWrapper);
-
-            // Append the grid item to the main container
-            container.appendChild(gridItem);
+            container.appendChild(viewerWrapper);
 
             // Create a div to hold the viewer
             const viewerDiv = document.createElement('div');
@@ -142,6 +101,8 @@
         });
     </script>
 
+</body>
+</html>
 </body>
 </html>
 
