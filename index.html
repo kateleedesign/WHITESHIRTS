@@ -18,12 +18,25 @@
         #viewer-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* Two columns */
-            grid-auto-rows: 1fr;                  /* Auto rows with equal height */
+            grid-auto-rows: auto;                  /* Auto rows */
             gap: 5vh;                            /* Margin between grid items */
             width: 100vw;
             height: 100vh;
             box-sizing: border-box;
             padding: 5vh;                        /* Padding around the grid */
+        }
+        /* Style the grid items */
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Custom style for titles */
+        .viewer-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
         }
         /* Make each viewer a square */
         .viewer-wrapper {
@@ -66,7 +79,6 @@
             '4.jpg',
             '2.jpg',
             '3.jpg',
-            // Ensure you have at least four images
         ];
         // Custom titles for each image
         const imageTitles = [
@@ -75,7 +87,9 @@
             'Panorama 3',
             'Panorama 4',
             'Panorama 5',
+            'Panorama 6',
         ];
+
         // The path to the subfolder containing the images
         const imageFolder = 'Images/';
 
@@ -84,18 +98,25 @@
 
         // Loop through each image filename and create a viewer
         imageFilenames.forEach((filename, index) => {
-            // Create a wrapper div to maintain aspect ratio
-            const viewerWrapper = document.createElement('div');
-            viewerWrapper.className = 'viewer-wrapper';
-            
+            // Create a grid item to hold both the title and viewer
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+
             // Create a title element for each viewer
             const titleElement = document.createElement('p');
             titleElement.className = 'viewer-title';
             titleElement.innerText = imageTitles[index]; // Use the custom title
-            
-            // Append the title before the viewer
-            container.appendChild(titleElement);
-            container.appendChild(viewerWrapper);
+
+            // Create a wrapper div to maintain aspect ratio
+            const viewerWrapper = document.createElement('div');
+            viewerWrapper.className = 'viewer-wrapper';
+
+            // Append the title and viewer to the grid item
+            gridItem.appendChild(titleElement);
+            gridItem.appendChild(viewerWrapper);
+
+            // Append the grid item to the main container
+            container.appendChild(gridItem);
 
             // Create a div to hold the viewer
             const viewerDiv = document.createElement('div');
